@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Name: A coding challenge</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/prism.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <header>
+           <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+               <div class="container-xxl">
+                   <a class="navbar-brand" href="#">
+                        <img src="/img/flavicon.svg" height="40" />AppMain
+                    </a>
+                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                       aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon-ms">
+                        <i class="bi bi-list"></i>
+                       </span>
+                   </button>
+                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                           <li class="nav-item">
+                               <a class="nav-link" href="/index.html">Home</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="/app.html">The App</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link active"  aria-current="page" href="/code.html">The Code</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="https://github.com/SamBasch/Palindrome-CheckerJS">The Repo</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="https://musical-torrone-7a3441.netlify.app">About</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="#">The Blog</a>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+           </nav>
+    </header>
+
+    <main class="content container">
+        <div class="row">
+            <h1 class="border-bottom border-2 border-dark-subtle" border->The Code</h1>
+            <!--Source code-->
+            <div class="col-12 col-lg-8">
+                <pre class="line-numbers">
+                    <code class="language-js">
+
+
+                        var events = [{
+                            event: "ComicCon",
+                            city: "New York",
+                            state: "New York",
+                            attendance: 240000,
+                            date: "06/01/2017",
+                          },
+                          {
+                            event: "ComicCon",
+                            city: "New York",
+                            state: "New York",
+                            attendance: 250000,
+                            date: "06/01/2018",
+                          },
+                          {
+                            event: "ComicCon",
+                            city: "New York",
+                            state: "New York",
+                            attendance: 257000,
+                            date: "06/01/2019",
+                          },
+                          {
+                            event: "ComicCon",
+                            city: "San Diego",
+                            state: "California",
+                            attendance: 130000,
+                            date: "06/01/2017",
+                          },
+                          {
+                            event: "ComicCon",
+                            city: "San Diego",
+                            state: "California",
+                            attendance: 140000,
+                            date: "06/01/2018",
+                          },
+                          {
+                            event: "ComicCon",
+                            city: "San Diego",
+                            state: "California",
+                            attendance: 150000,
+                            date: "06/01/2019",
+                          },
+                          {
+                            event: "HeroesCon",
+                            city: "Charlotte",
+                            state: "North Carolina",
+                            attendance: 40000,
+                            date: "06/01/2017",
+                          },
+                          {
+                            event: "HeroesCon",
+                            city: "Charlotte",
+                            state: "North Carolina",
+                            attendance: 45000,
+                            date: "06/01/2018",
+                          },
+                          {
+                            event: "HeroesCon",
+                            city: "Charlotte",
+                            state: "North Carolina",
+                            attendance: 50000,
+                            date: "06/01/2019",
+                          },
+                        ];
+                        
+                        
+                        function buildDropDown() {
+                        
+                            //get the dropdown menu from the page
+                            //empty the content of the HTML inside the dropdown so it is clean every program run/interation.
+                            //pull out just the city names
+                            //filter the cities to only DISTINCT city names
+                            //get the template from the HTML page
+                            //copy the template
+                             //get the <a> tag from the template copy
+                             //change the text
+                             // <a class="dropdown-item">All Cities</a>
+                             //add item to the page
+                        
+                            let dropDownMenu = document.getElementById('eventDropDown');
+                        
+                            dropDownMenu.innerHTML = '';
+                        
+                            let currEvents = getEventData();
+                        
+                            let eventCities = currEvents.map( (event) => event.city );
+                        
+                            let distinctCities = [...new Set(eventCities)];
+                        
+                            const template = document.getElementById('dropdownItemTemplate')
+                            let dropdownTemplateNode = document.importNode(template.content, true);
+                            let menuItem = dropdownTemplateNode.querySelector('a');
+                        
+                            menuItem.textContent = 'All Cities';
+                        
+                            menuItem.setAttribute("data-string", "All");
+                        
+                            dropDownMenu.appendChild(dropdownTemplateNode);
+                        
+                        
+                        
+                            for (let i = 0; i < distinctCities.length; i++) {
+                                let cityMenuItem = document.importNode(template.content, true)
+                                let cityButton = cityMenuItem.querySelector('a');
+                                cityButton.textContent = distinctCities[i];
+                                cityButton.setAttribute('data-string', distinctCities[i]);
+                                dropDownMenu.appendChild(cityMenuItem);
+                            }
+                        
+                        
+                        
+                            displayStats(currEvents)
+                        
+                            displayEvents(currEvents);
+                        
+                        }
+                        
+                        
+                        
+                        function displayStats(eventsArray) {
+                        
+                            let totalAttendance = calculateTotal(eventsArray);
+                        
+                            let averageAttendance = calculateAverage(eventsArray);
+                        
+                            let mostAttendance = calculateMost(eventsArray);
+                        
+                            let leastAttendance = calculateLeast(eventsArray);
+                        
+                            //do some math
+                        
+                            document.getElementById('total').textContent = totalAttendance.toLocaleString();
+                            document.getElementById('average').textContent = averageAttendance.toLocaleString(
+                                "en-US", {
+                                    maximumFractionDigits: 0,
+                                    minimumFractionDigits: 0
+                                }
+                            );
+                            document.getElementById('most').textContent = mostAttendance.toLocaleString();
+                            document.getElementById('least').textContent = leastAttendance.toLocaleString();
+                        }
+                        
+                        
+                        
+                        function calculateTotal(eventsArray) {
+                            
+                            let sum = 0;
+                        
+                            for(let i = 0; i < eventsArray.length; i++) {
+                                let currentEvent = eventsArray[i];
+                                sum = sum + currentEvent.attendance;
+                            }
+                            return sum;
+                        }
+                        
+                        
+                        
+                        function calculateAverage(eventsArray) {
+                            
+                            let sum = 0;
+                            let average = 0;
+                        
+                            
+                        
+                            for(let i = 0; i < eventsArray.length; i++) {
+                                let currentEvent = eventsArray[i];
+                                sum = sum + currentEvent.attendance;
+                        
+                                average = sum / eventsArray.length;
+                            }
+                            return average;
+                        }
+                        
+                        
+                        function calculateMost(eventsArray) {
+                            
+                           
+                            
+                        
+                            let largestAttendance = eventsArray[0].attendance;
+                            
+                        
+                            for (let i = 0; i < eventsArray.length; i++) {
+                        
+                               
+                                let currentEvent = eventsArray[i];
+                              
+                        
+                                if (currentEvent.attendance > largestAttendance) {
+                                    largestAttendance = currentEvent.attendance;
+                                }
+                            }
+                            return largestAttendance;
+                        }
+                        
+                        
+                        
+                        
+                        function calculateLeast(eventsArray) {
+                            
+                           
+                            
+                        
+                            let smallestAttendance = eventsArray[0].attendance;
+                            
+                        
+                            for (let i = 0; i < eventsArray.length; i++) {
+                        
+                               
+                                let currentEvent = eventsArray[i];
+                              
+                        
+                                if (currentEvent.attendance < smallestAttendance) {
+                                    smallestAttendance = currentEvent.attendance;
+                                }
+                            }
+                            return smallestAttendance;
+                        }
+                        
+                        
+                        
+                        
+                        function calculateStats(eventsArray) {
+                            let sum = 0;
+                            let average = 0;
+                            let largestAttendance = eventsArray[0].attendance;
+                            let smallestAttendance = eventsArray[0].attendance;
+                        
+                        
+                            let stats = {
+                                total: sum, 
+                                averageAttendance: average, 
+                                minimumAttendance: min, 
+                                maximumAttendance: max
+                            }
+                        
+                        
+                            for (let i = 0; i < eventsArray.length; i++) {
+                        
+                        
+                                sum = sum + currentEvent.attendance;
+                        
+                                
+                        
+                                let currentEvent = eventsArray[i];
+                        
+                                if (currentEvent.attendance > largestAttendance) {
+                                    largestAttendance = currentEvent.attendance;
+                                }
+                        
+                                if (currentEvent.attendance < smallestAttendance) {
+                                    smallestAttendance = currentEvent.attendance;
+                                }
+                            }
+                        
+                            average = sum / eventsArray.length;
+                        
+                        
+                        
+                         
+                        
+                            return stats;
+                                                         
+                        
+                            }
+                        
+                        
+                        function displayEvents(eventsArray) {
+                        
+                        //link your HTML (that you want to fill out with content) element to a variable
+                        //declare your template variable and link it to the template element in HTML
+                        //initialize the HTML element that you want to fill out with content with ''(nothing) to clear it before every use 
+                            let tableBody = document.getElementById('tableEvent');
+                            const tableRowTemplate = document.getElementById('eventTableRowTemplate');
+                            tableBody.innerHTML = '';
+                        
+                            //using a for loop to iterate through all of the objects in the array
+                            //
+                            for (let i = 0; i < eventsArray.length; i++) {
+                                let eventRow = document.importNode(tableRowTemplate.content, true);
+                                let currentEvent = eventsArray[i];
+                                let tableCells = eventRow.querySelectorAll('td');
+                                tableCells[0].textContent = currentEvent.event.toLocaleString();
+                                tableCells[1].textContent = currentEvent.city.toLocaleString();
+                                tableCells[2].textContent = currentEvent.state.toLocaleString();
+                                tableCells[3].textContent = currentEvent.attendance.toLocaleString();
+                                tableCells[4].textContent = currentEvent.date.toLocaleString();
+                        
+                                tableBody.appendChild(eventRow);
+                        
+                        
+                                
+                            }
+                        
+                        
+                        }
+                        
+                        
+                        
+                        function getEventData() {
+                                let currentEvents = JSON.parse( localStorage.getItem('sb-eventData') );
+                        
+                                if (currentEvents == null) {
+                                    currentEvents = events;
+                                    localStorage.setItem('sb-eventData', JSON.stringify(currentEvents) );
+                                }
+                        
+                                return currentEvents;
+                        }
+                        
+                        
+                        
+                        function getEvents(element) {
+                        
+                            let currentEvents = getEventData();
+                        
+                            let cityName = element.getAttribute('data-string');
+                        
+                            let filteredEvents = currentEvents;
+                        
+                            if(cityName != 'All') {
+                                filteredEvents =  currentEvents.filter(
+                                    function (event) {
+                                        if (cityName == event.city) {
+                                            return event;
+                                        }
+                                    }
+                                );
+                            
+                            }
+                           
+                        
+                            document.getElementById('statsHeader').textContent = cityName;
+                            displayStats(filteredEvents);
+                            displayEvents(filteredEvents);
+                        
+                        }
+                        
+                        
+                        
+                        function saveEventData() {
+                        
+                            let eventName = document.getElementById('newEventName').value;
+                            let cityName = document.getElementById('newEventCity').value;
+                            let eventAttendance = parseInt(document.getElementById('newEventAttendance').value);
+                            let eventDate = document.getElementById('newEventDate').value;
+                        
+                            eventDate = `${eventDate} 00:00`;
+                        
+                            eventDate = new Date(eventDate).toLocaleDateString();
+                        
+                        
+                            let stateSelect = document.getElementById('newEventState');
+                            let state = stateSelect.options[stateSelect.selectedIndex].text;
+                            
+                        
+                        
+                            let newEvent =  {
+                                attendance: eventAttendance,
+                                event: eventName, 
+                                date: eventDate, 
+                                state: state,
+                                city: cityName, 
+                        
+                            };
+                        
+                            let currentEvents = getEventData();
+                        
+                            currentEvents.push(newEvent);
+                        
+                            localStorage.setItem("sb-eventData", JSON.stringify(currentEvents));
+                        
+                        
+                            
+                        
+                            //update the page later
+                            buildDropDown();
+                            document.getElementById('statsHeader').textContent = 'All';
+                            document.getElemenyById('newEventForm').reset();
+                        
+                        
+                        
+                        }
+                            
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </code>
+                </pre>
+            </div>
+            <!--Code Description-->
+            <div class="col-12 col-lg-4">
+                <p>The code is structured in 10 functions</p>
+                <h5><code>buildDropDown()</code></h5>
+                <p>This function serves as the controller or entry point function. It is responsible for retreiving the user input from the web page. It also creates variables from the return functions of the other three functions. It also passes all the parameters to the other three functions. The main job of this function is to build our event 'drop down list' first we clear the content of our drop down menu, and retreive our event data by calling the function 'getEventData()'. We then use the .map method to filter out just the city names out of event objects. We then use a spread operator and contructor to make an array of just UNIQUE city names...no repeats. We first set 'All cities' as the first option in the drop down by setting the Attribute and appending it to the list template. </p>
+                <p>We then add all other city names that were returned from the 'getEventData()' function to the drop down list via a for loop and the same importNode HTMl template. The  next function displayStats() is then called.</p>
+                <h5><code>displayStats()</code></h5>
+                <p>This function is responsible for displaying and individual cities statistics on the small table below the drop down menu list. It does this by calling four function which are responsible for handling the calulations for each peice of data and returning it to this function to be displayed on the small table via the HTML element ID and .textContent technique. We also appended each display item with '.toLocaleString()' This makes the numbers more look proper without over the top floating points and proper commas.</p>
+                <h5><code>calculateTotal()</code></h5>
+                <p>This function is responsible for finding the total attendance of events from a particular cities. This is done via a for loop using the += operator, the sum is returned to the displayStats() function for displaying on the table. </p>
+                <h5><code>calculateAverage()</code></h5>
+                <p>This function is responsible for finding the average attendance of events from a particular cities. This is done via a for loop using the += operator the sum is then divided by the length of the events array and returned to the displayStats() function for displaying on the table. </p>
+                <h5><code>calculateMost()</code></h5>
+                <p>This function is responsible for finding the most attended events from a particular cities. This is done via a for loop using a comparison == operator the values of the array are check against themselves and the largest number within the array is then returned to the displayStats() function for displaying on the table. </p>
+                <h5><code>calculateLeast()</code></h5>
+                <p>This function is responsible for finding the least attended events from a particular cities. This is done via a for loop using a comparison == operator the values of the array are check against themselves and the smallest number within the array is then returned to the displayStats() function for displaying on the table. </p>
+                <h5><code>displayEvents()</code></h5>
+                <p>This function is responsible for producing the content of the large table on the web page. It does this by using an HTML template and importNode. It uses a for loop to index through out each event and adds that content to each table data cell with every iteration by accessing the data in the currentEvents object </p>
+                <h5><code>getEventData()</code></h5>
+                <p>This function is the first function called by the controller function. it is responible for retreiving the object carrying all of the event info from local storage. If the object happens to by nothing or 'null' then the variable 'currentEvents' is set equal to the array of objects called 'events' which is then put into locale storage and the object is then returned back to the controller function. </p>
+                <h5><code>getEvents()</code></h5>
+                <p>This function is passed the 'a' element found within the 'li' HTML tempalte we made. It is responsible for setting the selected cities name on to the HTML element we gave the id of 'statsHeader' which is the title on the table just below the drop down menu on the web page.</li></p>
+                <h5><code>saveEventData()</code></h5>
+                <p>This final function is responsible for taking in a users event data input via a pop up modal and adding it to our drop down and overview table it does this by taking the input values from element Id's on the modal form and making an object from the inputs ready to add to our array of objects carrying all of our other event data. We then call the 'getEventData()' function to get our array of 'event' objects. This newly formed object with the user data is .push() on to array of objects and put into locale storage. The buildDropDown() function is then recalled in this function to update our dropdown list and table with the new event data given by the user. The drop down menu item is set back to its default position of 'All' and The modal form content is also reset in case the user has more data to enter.   </p>
+            </div>
+        </div>
+    </main>
+
+<footer class="container-fluid py-3">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-center">
+            <div class="col text-center text-secondary text-lg-start order-last order-lg-first">
+                &copy; 2023 Sam Baschnagel
+            </div>
+            <div class="col text-center">
+                <img src="/img/WhiteLogoFullSVG.svg" height="55" />
+            </div>
+          <div class="col text-center text-lg-end">
+            <a href="#"><i class="bi bi-linkedin socialicons"></i></a>
+            <a href="#"><i class="bi bi-twitter socialicons"></i></a>
+            <a href="#"><i class="bi bi-youtube socialicons"></i></a>
+            <a href="#"><i class="bi bi-github socialicons"></i></a>
+          </div>
+        </div>
+
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="/js/prism.js"></script>
+
+    <script>
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true
+        })
+    </script>
+
+</body>
+</html>

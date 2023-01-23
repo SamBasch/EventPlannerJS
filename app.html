@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Name: A coding challenge</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+
+<body onload="buildDropDown()">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+            <div class="container-xxl">
+                <a class="navbar-brand" href="#">
+                    <img src="/img/flavicon.svg" height="40" />AppMain
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon-ms">
+                        <i class="bi bi-list"></i>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/app.html">The App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/code.html">The Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/SamBasch/Palindrome-CheckerJS">The Repo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://musical-torrone-7a3441.netlify.app">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">The Blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content container">
+       <div class="row">
+        <div class="col-3">
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                  Select A City...
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="visually-hidden">Toggle Dropwdown</span>
+                </button>
+                <ul class="dropdown-menu" id="eventDropDown">
+                 
+                </ul>
+              </div>
+              <table class="table table-striped" id="eventTable">
+                <tr>
+                    <th colspan="2">Stats for <span id="statsHeader">All</span> Events</th>
+
+                </tr>
+                <tr>
+                    <td>Total Attendance</td>
+                    <td id="total">100</td>
+                </tr>
+                <tr>
+                    <td>Average Attendance</td>
+                    <td id="average">100</td>
+                </tr>
+                <tr>
+                    <td>Most Attendance</td>
+                    <td id="most">100</td>
+                </tr>
+                <tr>
+                    <td>Least Attendance</td>
+                    <td id="least">100</td>
+                </tr>
+              </table>
+        </div>
+        <div class="col-md- order-first order-md-last">
+         
+        </div>
+       </div>
+       <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Data
+              </button>
+            
+            <table class="table table-striped table-responsive" >
+                <thead>            
+                    <tr>
+                    <th>
+                        Event
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Attendance
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody id="tableEvent">
+
+            </tbody>
+    
+                
+
+             
+
+            </table>
+        </div>
+       </div>
+    </main>
+
+    <footer class="container-fluid py-3">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-3 align-items-center">
+                <div class="col text-center text-secondary text-lg-start order-last order-lg-first">
+                    &copy; 2023 Sam Baschnagel
+                </div>
+                <div class="col text-center">
+                    <img src="/img/WhiteLogoFullSVG.svg" height="55" />
+                </div>
+                <div class="col text-center text-lg-end">
+                    <a href="#"><i class="bi bi-linkedin socialicons"></i></a>
+                    <a href="#"><i class="bi bi-twitter socialicons"></i></a>
+                    <a href="#"><i class="bi bi-youtube socialicons"></i></a>
+                    <a href="#"><i class="bi bi-github socialicons"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+
+
+
+<!--Modals-->
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Event Data</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="#" id="newEventForm">
+                <div class="row">
+                <div class="col-12">
+                    <label class="form-label" for="newEventName">Event Name</label>
+                    <input class="form-control"
+                    type="text"
+                    id="newEventName"
+                    placeholder="Event"
+                    aria-label="Event Name"
+                    required />
+
+                    </label>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="newEventCity">City Name</label>
+                    <input class="form-control"
+                    type="text"
+                    id="newEventCity"
+                    placeholder="City"
+                    aria-label="City Name"
+                    required />
+
+                    </label>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="newEventState">
+                        State
+                    </label>
+                    <select id="newEventState" class="form-select" aria-label="State">
+                            <option selected>Choose...</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="newEventAttendance">Attendance</label>
+                    <input class="form-control"
+                    type="text"
+                    id="newEventAttendance"
+                    placeholder="Attendance"
+                    aria-label="Attendance"
+                    required />
+
+                    </label>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="newEventDate">Event Date</label>
+                    <input class="form-control"
+                    type="date"
+                    id="newEventDate"
+                    placeholder="Event Date"
+                    aria-label="Event Date"
+                    required />
+
+                    </label>
+                </div>
+                
+              </div>
+            </form>
+          even
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button onclick="saveEventData()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Modals-->
+
+
+
+    <template id="dropdownItemTemplate">
+        <li>
+            <a class="dropdown-item" onclick="getEvents(this)">All Cities</a>
+        </li>
+    </template>
+
+    <template id="eventTableRowTemplate">
+    <tr>
+        <td data-id="event"></td>
+        <td data-id="city"></td>
+        <td data-id="state"></td>
+        <td data-id="attendance"></td>
+        <td data-id="eventDate"></td>
+    </tr>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/site.js"></script>
+
+
+</body>
+
+</html>
